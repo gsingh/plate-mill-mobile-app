@@ -1,20 +1,69 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import LoginScreen from './components/LoginScreen.js';
+import SignupScreen from './components/SignupScreen.js';
+import WelcomeScreen from './components/WelcomeScreen.js';
+import HomeScreen from './components/HomeScreen.js';
+import Plate from './components/Plate.js';
+import PlateDetails from "./components/PlateDetails.js";
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    <NavigationContainer>
+      <Stack.Navigator>
+      <Stack.Screen
+          name="Home"
+          component={ HomeScreen }
+          options={{
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="Log in"
+          component={ LoginScreen }
+          options={{
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="Sign up"
+          component={ SignupScreen }
+          options={{
+            headerTitle: "Register",
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="Welcome"
+          component={ WelcomeScreen }
+          options={{
+            headerTitle: "Profile",
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="Plate"
+          component={ Plate }
+          options={{
+            headerTitle: "Enter Plate",
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="PlateDetails"
+          component={ PlateDetails }
+          options={{
+            headerTitle: "Plate details",
+            headerShown: true,
+          }}
+        />
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default App;
